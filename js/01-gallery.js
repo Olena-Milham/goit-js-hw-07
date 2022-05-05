@@ -87,8 +87,8 @@ function onClick(event) {
     const isEscKey = event.code === 'Escape';
     if (isEscKey) {
       instance.close();
+      document.removeEventListener('keydown', onEscKeyPress);
     }
-    document.removeEventListener('keydown', onEscKeyPress);
   }
   instance.show();
 }
