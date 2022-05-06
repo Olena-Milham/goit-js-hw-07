@@ -31,7 +31,7 @@ console.log(galleryItems);
 const galleryEl = document.querySelector('.gallery');
 const markup = galleryItems
   .map(
-    item => `<div class="gallery__item">
+    item => `<li class="gallery__item">
   <a class="gallery__link" href="${item.original}">
     <img
       class="gallery__image"
@@ -40,39 +40,18 @@ const markup = galleryItems
       alt="${item.description}"
     />
   </a>
-</div>`,
+</li>`,
   )
   .join('');
 
-// console.log(markup);
 // galleryEl.innerHTML = markup;
 
 galleryEl.insertAdjacentHTML('afterbegin', markup);
 
-// *Please note that the image is wrapped in a link,
-//  which means that, when clicked, the user will
-// be redirected to another page by default.
-//  Disable this behavior by default.
-
-// const linkEl = document.querySelector('gallery__link');
-
-// linkEl.addEventListener('click', handleClick);
-
-// function handleClick(event) {
-//   event.preventDefault();
-//   console.log('Image was clicked');
-// }
-
-// 2.Implementing delegation to div.gallery
-// and getting the url of a large image.
-
-// фильтр цели клика
 galleryEl.addEventListener('click', onClick);
 
 function onClick(event) {
   event.preventDefault();
-  //   console.log(event.target);
-  // console.log(event.target.nodeName);
   if (event.target.nodeName !== 'IMG') {
     return;
   }
@@ -88,6 +67,8 @@ function onClick(event) {
     if (isEscKey) {
       instance.close();
       document.removeEventListener('keydown', onEscKeyPress);
+      // ??
+      document.removeEventListener('click', onClick);
     }
   }
   instance.show();
