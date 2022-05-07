@@ -68,8 +68,8 @@ function onClick(event) {
       instance.close();
       document.removeEventListener('keydown', onEscKeyPress);
       // ??
-      document.removeEventListener('click', onClick);
     }
   }
   instance.show();
 }
+document.removeEventListener('click', onClick);
